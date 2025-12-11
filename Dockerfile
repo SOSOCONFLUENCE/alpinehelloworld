@@ -3,6 +3,16 @@ FROM alpine:latest
 
 # Install python and pip
 RUN apk add --no-cache --update python3 py3-pip bash
+
+# Créer un environnement virtuel
+RUN python3 -m venv /venv
+
+# Activer l'environnement virtuel et installer les dépendances
+RUN /venv/bin/pip install --no-cache-dir -q -r /tmp/requirements.txt
+
+# Utiliser l'environnement virtuel pour exécuter ton app
+ENV PATH="/venv/bin:$PATH"
+
 ADD ./webapp/requirements.txt /tmp/requirements.txt
 
 # Install dependencies
