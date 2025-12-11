@@ -28,4 +28,4 @@ RUN adduser -D myuser
 USER myuser
 
 # Lancer l'application avec Gunicorn
-CMD gunicorn --bind 0.0.0.0:$PORT wsgi
+CMD gunicorn --bind 0.0.0.0:$PORT app:app
